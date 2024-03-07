@@ -1,34 +1,62 @@
-'use client';
-
 import { GlobalContext } from '@/context/GlobalState';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Dialog, DialogTrigger } from '@/components/ui/dialog';
+import { ConfirmationDialog } from './ConfirmationDialog';
+
+import { displaySelectedDay } from '@/ts/utils';
 
 const AvailableTimeSlots = () => {
-  const { selectedDay, availableTimeSlots } = useContext(GlobalContext);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [confirmedReservation, setConfirmedReservation] = useState(false);
+  const { selectedDay, availableTimeSlots, setSelectedDay } =
+    useContext(GlobalContext);
 
-  const displaySelectedDay = () =>
-    selectedDay?.toLocaleString('en', {
-      weekday: 'long',
-      month: 'long',
-      day: '2-digit',
-    });
+  const setMatchStartTime = (hour: number, minutes: number) => {
+    const newDateInstance = new Date(selectedDay);
+    const updatedMatchDate = new Date(
+      newDateInstance.setHours(hour, minutes, 0)
+    );
 
-  const selectTime = (hour: number, minutes: number) => {
-    console.log('TODO: select time');
+    setSelectedDay(updatedMatchDate);
+    setOpenDialog(true);
+  };
+
+  const handleDialog = (value: boolean) => {
+    if (confirmedReservation) {
+      setOpenDialog(value);
+      setConfirmedReservation(false);
+
+      return;
+    }
+
+    setOpenDialog(value);
   };
 
   return (
     <section className="available-time-slots">
-      {selectedDay && `${displaySelectedDay()}`}
+      <Dialog open={openDialog} onOpenChange={handleDialog}>
+        {selectedDay && `${displaySelectedDay(selectedDay)}`}
 
-      {selectedDay &&
-        availableTimeSlots.map(({ label, hour, minutes }) => (
-          <Button key={label} onClick={() => selectTime(hour, minutes)}>
-            {label}
-          </Button>
-        ))}
+        {selectedDay && !availableTimeSlots.length && (
+          <p>No available time slots</p>
+        )}
+
+        {selectedDay &&
+          availableTimeSlots.map(({ label, hour, minutes }) => (
+            <DialogTrigger
+              key={label}
+              onClick={() => setMatchStartTime(hour, minutes)}
+            >
+              {label}
+            </DialogTrigger>
+          ))}
+
+        <ConfirmationDialog
+          confirmedReservation={confirmedReservation}
+          setConfirmedReservation={setConfirmedReservation}
+        />
+      </Dialog>
     </section>
   );
 };
