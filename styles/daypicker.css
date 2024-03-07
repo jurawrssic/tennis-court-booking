@@ -1,0 +1,103 @@
+.daypicker-area {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  &__calendar {
+    margin: 0;
+
+    .rdp-caption_start div {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    table th,
+    table td {
+      height: 3rem;
+      width: 3rem;
+      margin: 0 0.3rem;
+      border-radius: 100%;
+
+      button {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+      }
+    }
+
+    .rdp-button:hover:not([disabled]):not(.rdp-day_selected),
+    .rdp-button.rdp-day_selected {
+      background-color: #d7e367;
+      border-radius: 100%;
+      font-weight: 700;
+      color: white;
+      &:after {
+        border-radius: 100%;
+      }
+    }
+
+    .rdp-button:not(hover):not([disabled]):not(.rdp-day_selected) {
+      border-radius: 100%;
+    }
+
+    .\[\&\:has\(\[aria-selected\]\)\]\:bg-accent:has([aria-selected]) {
+      background-color: #eef2c0;
+    }
+  }
+}
+
+@media (max-width: 412px) {
+  .daypicker-area {
+    flex-direction: column;
+    padding: 1.5rem;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    &__calendar {
+      align-self: center;
+    }
+
+    .rdp {
+      table th,
+      table td {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 413px) and (max-width: 760px) {
+  .daypicker-area {
+    &__calendar {
+      align-self: center;
+    }
+
+    .rdp {
+      table th,
+      table td {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1024px) {
+  .daypicker-area {
+    grid-area: date;
+    padding-bottom: 0;
+  }
+
+  .rdp {
+    margin: 0;
+    padding: 0;
+  }
+}

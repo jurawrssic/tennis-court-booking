@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+/*this is for fixing an issue with shadcn's select component that causes a shift on the whole page*/
+html body {
+  margin-right: 0px !important;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 0.65fr 1fr 0.5fr;
+  width: 90%;
+
+  margin: 4rem auto;
+  padding: 0;
+
+  border-radius: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: #ffffff;
+}
+
+.select-area {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 2rem;
+
+  border-right: 1px solid #e5e7eb;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+}
+
+.available-time-slots {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  padding: 2rem 2rem 2rem 0;
+  row-gap: 0.8rem;
+
+  button {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    height: 3.5rem;
+
+    font-weight: 700;
+    color: #d7e367;
+
+    background-color: #ffffff;
+    border: 2px solid #d7e367;
+
+    &:before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+
+      width: 0%;
+      height: 100%;
+
+      background-color: #d7e367;
+      transition: all 0.5s;
+      content: '';
+    }
+    &:hover {
+      color: #ffffff;
+      background-color: #d7e367;
+      transition: all 0.5s;
+      &:before {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+  }
+
+  .select-area {
+    padding: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .available-time-slots {
+    padding: 0 2rem 2rem;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 760px) and (max-width: 1024px) {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-columns: min-content;
+    grid-template-areas:
+      'select date'
+      'select time';
+  }
+
+  .select-area {
+    grid-area: select;
+  }
+
+  .available-time-slots {
+    grid-area: time;
+    padding-top: 0;
+    padding-left: 2rem;
+  }
+}
