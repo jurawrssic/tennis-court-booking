@@ -250,4 +250,13 @@ const getAvailableTimeSlots = (
   setAvailableTimeSlots(availableTimeSlots);
 };
 
-export { getAvailableTimeSlots };
+const displaySelectedDay = (date: Date) => {
+  if (date)
+    return date.toLocaleString('en', {
+      weekday: 'long',
+      month: 'long',
+      day: '2-digit',
+    });
+};
+
+export { getAvailableTimeSlots, displaySelectedDay };
