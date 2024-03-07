@@ -25,11 +25,21 @@ export default (state: any, action: { type: any; payload: any }) => {
         ...state,
         availableTimeSlots: action.payload,
       };
-
     case 'GET_BOOKED_MATCHES_PER_SELECTED_LOCATION':
       return {
         ...state,
         filteredMatches: state.previouslyBookedMatches[action.payload],
+      };
+    case 'ADD_NEW_RESERVATION':
+      return {
+        ...state,
+        previouslyBookedMatches: {
+          ...state.previouslyBookedMatches,
+          [state.selectedLocation]: [
+            ...(state.previouslyBookedMatches[state.selectedLocation] || []),
+            action.payload,
+          ],
+        },
       };
     default:
       return state;

@@ -15,7 +15,10 @@ import type {
   PREVIOUSLY_BOOKED_MATCHES_OBJECT,
 } from './types';
 
-import type { RESERVATIONS_ARRAY } from '../ts/types';
+import type {
+  SINGLE_RESERVATION_OBJECT,
+  RESERVATIONS_ARRAY,
+} from '../ts/types';
 
 type State = {
   selectedLocation: string;
@@ -50,22 +53,22 @@ const initialState = {
   previouslyBookedMatches: {
     brazil: [
       {
-        date: new Date('2024-03-07T10:30:00'),
-        endTime: new Date('2024-03-07T12:00:00'),
+        date: new Date('2024-03-08T10:30:00'),
+        endTime: new Date('2024-03-08T12:00:00'),
       },
       {
-        date: new Date('2024-03-07T13:30:00'),
-        endTime: new Date('2024-03-07T14:00:00'),
+        date: new Date('2024-03-08T13:30:00'),
+        endTime: new Date('2024-03-08T14:00:00'),
       },
     ],
     lisbon: [
       {
-        date: new Date('2024-03-07T10:30:00'),
-        endTime: new Date('2024-03-07T12:00:00'),
+        date: new Date('2024-03-08T10:30:00'),
+        endTime: new Date('2024-03-08T12:00:00'),
       },
       {
-        date: new Date('2024-03-07T13:30:00'),
-        endTime: new Date('2024-03-07T14:00:00'),
+        date: new Date('2024-03-08T13:30:00'),
+        endTime: new Date('2024-03-08T14:00:00'),
       },
     ],
     singapore: [
@@ -84,10 +87,11 @@ const initialState = {
 type ContextType = State & {
   setSelectedLocation: Dispatch<SetStateAction<string>>;
   setSelectedMatchDuration: Dispatch<SetStateAction<string>>;
-  setSelectedDay: Dispatch<SetStateAction<Date>>;
+  setSelectedDay: Dispatch<SetStateAction<Date | null>>;
   setAvailableTimeSlots: Dispatch<SetStateAction<AVAILABLE_TIME_SLOTS_ARRAY>>;
   toggleDayPicker: Dispatch<SetStateAction<boolean>>;
   getBookedMatchesPerLocation: Dispatch<void>;
+  addNewReservation: Dispatch<SetStateAction<SINGLE_RESERVATION_OBJECT>>;
 };
 
 export const GlobalContext = createContext<ContextType>({} as ContextType);
@@ -103,7 +107,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     dispatch({ type: 'SET_SELECTED_MATCH_DURATION', payload: matchDuration });
   };
 
-  const setSelectedDay = (day: Date) => {
+  const setSelectedDay = (day: Date | null) => {
     dispatch({ type: 'SET_SELECTED_DAY', payload: day });
   };
 
@@ -117,11 +121,24 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     dispatch({ type: 'DISABLE_DAY_PICKER', payload: disableDayPicker });
   };
 
+  const toggleIsLoading = () => {
+    dispatch({ type: 'TOGGLE_IS_LOADING', payload: null });
+  };
+
   const getBookedMatchesPerLocation = () => {
     if (state.selectedLocation) {
       dispatch({
         type: 'GET_BOOKED_MATCHES_PER_SELECTED_LOCATION',
         payload: state.selectedLocation,
+      });
+    }
+  };
+
+  const addNewReservation = (newReservation: SINGLE_RESERVATION_OBJECT) => {
+    if (state.selectedLocation) {
+      dispatch({
+        type: 'ADD_NEW_RESERVATION',
+        payload: newReservation,
       });
     }
   };
@@ -136,6 +153,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         toggleDayPicker,
         setAvailableTimeSlots,
         getBookedMatchesPerLocation,
+        addNewReservation,
       }}
     >
       {children}
