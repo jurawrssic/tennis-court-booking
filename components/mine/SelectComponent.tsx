@@ -39,13 +39,14 @@ const SelectComponent = ({
       getBookedMatchesPerLocation();
     }
 
-    if (selectedLocation && selectedMatchDuration && selectedDay)
+    if (selectedLocation && selectedMatchDuration && selectedDay) {
       getAvailableTimeSlots(
         selectedDay,
         selectedMatchDuration,
         filteredMatches,
         setAvailableTimeSlots
       );
+    }
   }, [selectedLocation, selectedMatchDuration, selectedDay]);
 
   return (
