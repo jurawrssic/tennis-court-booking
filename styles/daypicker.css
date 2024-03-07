@@ -41,12 +41,23 @@
       }
     }
 
-    .rdp-button:not(hover):not([disabled]):not(.rdp-day_selected) {
+    .rdp-button:not(hover):not([disabled]):not(.rdp-day_selected),
+    .last\:\[\&\:has\(\[aria-selected\]\)\]\:rounded-r-md:has(
+        [aria-selected]
+      ):last-child,
+    .first\:\[\&\:has\(\[aria-selected\]\)\]\:rounded-l-md:has(
+        [aria-selected]
+      ):first-child {
       border-radius: 100%;
     }
 
     .\[\&\:has\(\[aria-selected\]\)\]\:bg-accent:has([aria-selected]) {
       background-color: #eef2c0;
+    }
+
+    .focus\:bg-primary:focus {
+      background-color: #d7e367 /*#aeb854*/;
+      font-weight: 700;
     }
   }
 }

@@ -153,6 +153,7 @@ html body {
       transition: all 0.5s;
       content: '';
     }
+
     &:hover {
       color: #ffffff;
       background-color: #d7e367;
