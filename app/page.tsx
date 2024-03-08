@@ -9,11 +9,16 @@ import { AvailableTimeSlots } from '@/components/mine/AvailableTimeSlots';
 import { LocationSelect } from '@/components/mine/LocationSelect';
 import { MatchDurationSelect } from '@/components/mine/MatchDurationSelect';
 
+import {
+  globalClasses,
+  selectComponentClasses,
+} from '@/styles/tailwind-classes';
+
 const HomePage = () => {
   return (
     <GlobalProvider>
-      <div className="container">
-        <section className="select-area">
+      <div className={globalClasses.container}>
+        <section className={selectComponentClasses.selectArea}>
           <h1>Book a Court</h1>
           <LocationSelect />
           <MatchDurationSelect />

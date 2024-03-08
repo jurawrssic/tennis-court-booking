@@ -33,6 +33,12 @@
     --ring: 0 0% 3.9%;
 
     --radius: 0.5rem;
+
+    --light-yellow: #eef2c0;
+    --yellow: #d7e367;
+    --darker-yellow: #aeb854;
+    --sand-white: #f0f0f0;
+    --light-gray: #e5e7eb;
   }
 
   .dark {
@@ -81,7 +87,7 @@ html {
 
 body {
   margin: 0;
-  background-color: #f0f0f0;
+  background-color: var(--sand-white);
 }
 
 /*this is for fixing an issue with shadcn's select component that causes a shift on the whole page*/
@@ -90,31 +96,19 @@ html body {
 }
 
 .container {
-  display: grid;
   grid-template-columns: 0.65fr 1fr 0.65fr;
   grid-template-rows: calc(100vh - 8rem);
-  width: 90%;
-  max-height: calc(100vh - 8rem);
-  overflow-y: hidden;
   margin: 4rem auto;
-  padding: 0;
   border-radius: 1rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  background-color: #ffffff;
-
-  &__right-side {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
+  background-color: white;
 }
 
 .select-area {
-  display: flex;
-  flex-direction: column;
   row-gap: 1rem;
   padding: 2rem;
 
-  border-right: 1px solid #e5e7eb;
+  border-right: 1px solid var(--light-gray);
 
   h1 {
     font-size: 1.5rem;
@@ -152,10 +146,10 @@ html body {
     height: 3.5rem;
 
     font-weight: 700;
-    color: #d7e367;
+    color: var(--yellow);
 
-    background-color: #ffffff;
-    border: 2px solid #d7e367;
+    background-color: white;
+    border: 2px solid var(--yellow);
 
     &:before {
       position: absolute;
@@ -166,14 +160,14 @@ html body {
       width: 0%;
       height: 100%;
 
-      background-color: #d7e367;
+      background-color: var(--yellow);
       transition: all 0.5s;
       content: '';
     }
 
     &:hover {
-      color: #ffffff;
-      background-color: #d7e367;
+      color: white;
+      background-color: var(--yellow);
       transition: all 0.5s;
       &:before {
         width: 100%;
@@ -183,12 +177,12 @@ html body {
 }
 
 button.accent-button {
-  background-color: #aeb854;
+  background-color: var(--darker-yellow);
   font-weight: 700;
   color: white;
 
   &:hover {
-    background-color: #d7e367;
+    background-color: var(--yellow);
   }
 }
 
@@ -196,7 +190,7 @@ button.cancel-button {
   color: hsl(var(--muted-foreground));
 
   &:hover {
-    background-color: #eef2c0;
+    background-color: var(--light-yellow);
   }
 }
 
@@ -211,13 +205,13 @@ button.cancel-button {
   .select-area {
     padding: 1.5rem;
     border-right: none;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--light-gray);
   }
 
   .available-time-slots {
     max-height: 300px;
     padding: 1rem 2rem 2rem;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--light-gray);
 
     button {
       width: 100%;
@@ -231,7 +225,7 @@ button.cancel-button {
   }
 }
 
-@media (min-width: 760px) and (max-width: 1100px) {
+@media (min-width: 761px) and (max-width: 1100px) {
   .container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -253,7 +247,7 @@ button.cancel-button {
   }
 
   .daypicker-area {
-    border-right: 1px solid #e5e7eb;
+    border-right: 1px solid var(--light-gray);
   }
 
   .available-time-slots {
@@ -273,10 +267,10 @@ button.cancel-button {
 
 ::-webkit-scrollbar {
   width: 8px;
-  background-color: #dfe6e9;
+  background-color: white;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #eef2c0;
+  background-color: var(--light-yellow);
   border-radius: 1rem;
 }

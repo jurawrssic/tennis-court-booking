@@ -5,6 +5,7 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import { ConfirmationDialog } from './ConfirmationDialog';
 
 import { displaySelectedDay } from '@/ts/utils';
+import { availableTimeslotComponentClasses } from '@/styles/tailwind-classes';
 
 const AvailableTimeSlots = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -31,7 +32,7 @@ const AvailableTimeSlots = () => {
   };
 
   return (
-    <section className="available-time-slots">
+    <section className={availableTimeslotComponentClasses.availableTimeSlots}>
       <Dialog open={openDialog} onOpenChange={handleDialog}>
         <p>{selectedDay && `${displaySelectedDay(selectedDay)}`}</p>
 
