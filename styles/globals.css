@@ -91,15 +91,21 @@ html body {
 
 .container {
   display: grid;
-  grid-template-columns: 0.65fr 1fr 0.5fr;
+  grid-template-columns: 0.65fr 1fr 0.65fr;
+  grid-template-rows: calc(100vh - 8rem);
   width: 90%;
-
+  max-height: calc(100vh - 8rem);
+  overflow-y: hidden;
   margin: 4rem auto;
   padding: 0;
-
   border-radius: 1rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   background-color: #ffffff;
+
+  &__right-side {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .select-area {
@@ -114,17 +120,28 @@ html body {
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    height: 2rem;
+  }
+
+  button {
+    margin-top: 0.5rem;
   }
 }
 
 .available-time-slots {
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-
-  padding: 2rem 2rem 2rem 0;
+  display: grid;
+  grid-auto-rows: min-content;
+  padding: 2rem;
   row-gap: 0.8rem;
+  max-height: 100%;
+  overflow-y: auto;
+
+  p:first-child {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    margin-top: 62px;
+  }
 
   button {
     display: inline-block;
@@ -165,11 +182,30 @@ html body {
   }
 }
 
+button.accent-button {
+  background-color: #aeb854;
+  font-weight: 700;
+  color: white;
+
+  &:hover {
+    background-color: #d7e367;
+  }
+}
+
+button.cancel-button {
+  color: hsl(var(--muted-foreground));
+
+  &:hover {
+    background-color: #eef2c0;
+  }
+}
+
 @media (max-width: 760px) {
   .container {
     display: flex;
     flex-direction: column;
     margin: 1rem auto;
+    max-height: unset;
   }
 
   .select-area {
@@ -179,31 +215,68 @@ html body {
   }
 
   .available-time-slots {
-    padding: 0 2rem 2rem;
+    max-height: 300px;
+    padding: 1rem 2rem 2rem;
+    border-top: 1px solid #e5e7eb;
 
     button {
       width: 100%;
     }
+
+    p:first-child {
+      display: grid;
+      text-align: center;
+      margin-top: 0;
+    }
   }
 }
 
-@media (min-width: 760px) and (max-width: 1024px) {
+@media (min-width: 760px) and (max-width: 1100px) {
   .container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-columns: min-content;
+    grid-template-rows: 0.5fr;
     grid-template-areas:
-      'select date'
-      'select time';
+      'select time'
+      'date time';
+
+    &__right-side {
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+    }
   }
 
   .select-area {
+    height: 100%;
     grid-area: select;
+  }
+
+  .daypicker-area {
+    border-right: 1px solid #e5e7eb;
   }
 
   .available-time-slots {
     grid-area: time;
-    padding-top: 0;
     padding-left: 2rem;
+
+    p:first-child {
+      margin-top: 0;
+    }
   }
+}
+
+::-webkit-scrollbar-track {
+  border: 5px solid white;
+  background-color: white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #dfe6e9;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #eef2c0;
+  border-radius: 1rem;
 }

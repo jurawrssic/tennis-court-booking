@@ -51,9 +51,11 @@ const ConfirmationDialog = ({
     return (
       <>
         <DialogHeader>
-          <DialogTitle>Please confirm your reservation.</DialogTitle>
+          <DialogTitle className="text-center">
+            Please confirm your reservation.
+          </DialogTitle>
         </DialogHeader>
-        <DialogDescription>
+        <DialogDescription className="text-center">
           Review your reservation details:
           <br />
           {`Date: ${displaySelectedDay(selectedDay)}`}
@@ -68,12 +70,18 @@ const ConfirmationDialog = ({
         </DialogDescription>
         <DialogFooter>
           <DialogClose asChild>
-            <Button type="button" variant="secondary">
+            <Button type="button" variant="secondary" className="cancel-button">
               Cancel
             </Button>
           </DialogClose>
 
-          <Button type="button" variant="default" onClick={handleConfirmation}>
+          <Button
+            className="accent-button"
+            type="button"
+            variant="default"
+            onClick={handleConfirmation}
+            disabled={confirmedReservation}
+          >
             Confirm
           </Button>
         </DialogFooter>
@@ -89,12 +97,14 @@ const ConfirmationDialog = ({
         </DialogHeader>
         <DialogDescription>
           <span>
-            You'll receive an email shortly with your reservation details.
+            You will receive an email shortly with your reservation details.
           </span>
         </DialogDescription>
         <DialogFooter>
           <DialogClose asChild>
-            <Button>Close</Button>
+            <Button type="button" variant="secondary" className="cancel-button">
+              Close
+            </Button>
           </DialogClose>
         </DialogFooter>
       </>

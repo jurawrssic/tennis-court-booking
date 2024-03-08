@@ -33,7 +33,7 @@ const AvailableTimeSlots = () => {
   return (
     <section className="available-time-slots">
       <Dialog open={openDialog} onOpenChange={handleDialog}>
-        {selectedDay && `${displaySelectedDay(selectedDay)}`}
+        <p>{selectedDay && `${displaySelectedDay(selectedDay)}`}</p>
 
         {selectedDay && !availableTimeSlots.length && (
           <p>No available time slots</p>
