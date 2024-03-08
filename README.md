@@ -34,7 +34,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - Disabled all past days on the calendar so the user can't book the court on a day that has already passed, and also prevents them from booking at an hour that has already passed;
 - We also shouldn't display time slots outside of working court hours, assuming that opening is at 8am and closing is at 6pm, but that can be changed since there's a constant for that;
-- Anticipate there will be many court locations and match durations. The app should be able to handle any number of court locations and match durations, as long as they adhere to the existing patterns;
+- Matches shouldn't conflict in time, partially or completely overlap each other, this is where I spent the most time;
+- Anticipate there will be many court locations and match durations. The app should be able to handle any number of court locations and match durations, as long as they adhere to the existing patterns.
 - Responsive design was implemented based on what was deemed most appropriate, as specific design for smaller screens was not provided.
 
 ## Features I thought about but didn't have the time to code
@@ -45,5 +46,6 @@ Since I didn't have much time, my primary focus was on delivering the main featu
 - Wanted to have tests in place with Jest and Cypress;
 - Would definitely add internationalization to eliminate hardcoded text;
 - If I were to start development anew, I would opt for a third-party library like date-fns to streamline date handling, given the challenges posed by the JavaScript date API;
-- I would disable days that are fully booked and highlight days when the user has a booking, as implied by the screenshot provided for the design;
-- Would send confirmation emails upon booking.
+- I would disable days that are fully booked and highlight days when the user has a booking, as implied by the screenshot provided for the design -- this seems to be the most intricate part of the development and would take me long hours to get right;
+- Would send confirmation emails upon booking;
+- Maybe make it a fullstack with an API developed using Next.js.
