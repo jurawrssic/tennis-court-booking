@@ -5,8 +5,7 @@ First you'll need to make sure you have a more updated version of Node
 
 ``node -v``
 
-I recommend using v21 since it's the one I developed it and know that it doesn't have any issues with the application -- for context I'm running everything on Ubuntu.
-You can install this version of node using nvm:
+I recommend using v21 since it's the one I developed and know doesn't have any issues with the application -- for context, I'm running everything on Ubuntu. You can install this version of Node.js using nvm.
 
 ```bash
 nvm install v21
@@ -38,12 +37,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Anticipate there will be many court locations and match durations. The app should be able to handle any number of court locations and match durations, as long as they adhere to the existing patterns;
 - Responsive design was implemented based on what was deemed most appropriate, as specific design for smaller screens was not provided.
 
-  ### Features I thought about but didn't have the time to code
-  Since I didn't have much time, my primary focus was on delivering the main feature with clean, maintainable, and high-quality code. Here are a few features I considered but didn't have time to implement:
-  - Wanted to have more validation; the application flow is structured in a way so that the user can't make mistakes like trying to book without a location, etc., but additional validation would enhance the user experience and help prevent unexpected errors;
-  - Error handling; while the application seems robust with the preventive measures already in place, further error handling wouldn't hurt;
-  - Wanted to have tests in place with Jest and Cypress;
-  - Would definitely add internationalization to eliminate hardcoded text;
-  - If I were to start development anew, I would opt for a third-party library like date-fns to streamline date handling, given the challenges posed by the JavaScript date API;
-  - I would disable days that are fully booked and highlight days when the user has a booking, as implied by the screenshot provided for the design;
-  - Would send confirmation emails upon booking.
+## Features I thought about but didn't have the time to code
+Since I didn't have much time, my primary focus was on delivering the main feature with clean, maintainable, and high-quality code. Here are a few features I considered but didn't have time to implement:
+
+- Wanted to have more validation; the application flow is structured in a way so that the user can't make mistakes like trying to book without a location, etc., but additional validation would enhance the user experience and help prevent unexpected errors;
+- Error handling; while the application seems robust with the preventive measures already in place, further error handling wouldn't hurt;
+- Wanted to have tests in place with Jest and Cypress;
+- Would definitely add internationalization to eliminate hardcoded text;
+- If I were to start development anew, I would opt for a third-party library like date-fns to streamline date handling, given the challenges posed by the JavaScript date API;
+- I would disable days that are fully booked and highlight days when the user has a booking, as implied by the screenshot provided for the design;
+- Would send confirmation emails upon booking.
