@@ -32,8 +32,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Assumptions made during the development of the project:
 
-- Disabled all past days on the calendar so the user can't book the court on a day that has already passed;
-- We also shouldn't display time slots outside of working court hours, assuming that opening is at 8am and closing is at 6pm, that can be changed since there's a constant for that;
+- DDisabled all past days on the calendar so the user can't book the court on a day that has already passed, and also prevents them from booking at an hour that has already passed;
+- We also shouldn't display time slots outside of working court hours, assuming that opening is at 8am and closing is at 6pm, but that can be changed since there's a constant for that;
 - Anticipate there will be many court locations and match durations. The app should be able to handle any number of court locations and match durations, as long as they adhere to the existing patterns;
 - Responsive design was implemented based on what was deemed most appropriate, as specific design for smaller screens was not provided.
 
