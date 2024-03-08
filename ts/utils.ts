@@ -272,9 +272,13 @@ const displaySelectedDay = (date?: Date) =>
     day: '2-digit',
   });
 
+const capitalizeText = (text: string) =>
+  text.charAt(0).toUpperCase() + text.slice(1);
+
 export {
   formatTime,
   getReservationEndTime,
   getAvailableTimeSlots,
   displaySelectedDay,
+  capitalizeText,
 };

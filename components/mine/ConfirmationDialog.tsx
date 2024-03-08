@@ -14,6 +14,7 @@ import {
   formatTime,
   getReservationEndTime,
   displaySelectedDay,
+  capitalizeText,
 } from '@/ts/utils';
 
 const ConfirmationDialog = ({
@@ -66,7 +67,7 @@ const ConfirmationDialog = ({
             getReservationEndTime(selectedDay, selectedMatchDuration)
           )}`}
           <br />
-          {`Location: ${selectedLocation}`}
+          {`Location: ${capitalizeText(selectedLocation)}`}
         </DialogDescription>
         <DialogFooter>
           <DialogClose asChild>
