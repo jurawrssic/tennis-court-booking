@@ -1,5 +1,5 @@
 import { GlobalContext } from '@/context/GlobalState';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
 import {
   DialogContent,
@@ -11,7 +11,12 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 
-import { displaySelectedDay, getAvailableTimeSlots } from '@/ts/utils';
+import {
+  formatTime,
+  getReservationEndTime,
+  displaySelectedDay,
+  getAvailableTimeSlots,
+} from '@/ts/utils';
 
 const ConfirmationDialog = ({
   confirmedReservation,
@@ -31,27 +36,10 @@ const ConfirmationDialog = ({
     getBookedMatchesPerLocation,
   } = useContext(GlobalContext);
 
-  const minutesToHoursAndMinutes = (totalMinutes: number) => {
-    const hours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
-
-    return `${hours}h${minutes}m`;
-  };
-
-  const getReservationEndTime = () => {
-    const endTime = new Date(selectedDay);
-
-    return new Date(
-      endTime.setMinutes(
-        selectedDay.getMinutes() + parseInt(selectedMatchDuration)
-      )
-    );
-  };
-
   const getNewReservationObject = () => {
     return {
       date: selectedDay,
-      endTime: getReservationEndTime(),
+      endTime: getReservationEndTime(selectedDay, selectedMatchDuration),
     };
   };
 
@@ -61,7 +49,6 @@ const ConfirmationDialog = ({
     addNewReservation(newReservation);
 
     getBookedMatchesPerLocation();
-
     setConfirmedReservation(true);
   };
 
@@ -86,17 +73,10 @@ const ConfirmationDialog = ({
           <br />
           {`Date: ${displaySelectedDay(selectedDay)}`}
           <br />
-          {`Time: ${
-            selectedDay &&
-            selectedDay.toLocaleString('en-US', {
-              hour: 'numeric',
-              minute: 'numeric',
-              hour12: true,
-            })
-          }`}
+          {`From: ${selectedDay && formatTime(selectedDay)}`}
           <br />
-          {`Duration: ${minutesToHoursAndMinutes(
-            parseInt(selectedMatchDuration)
+          {`Until: ${formatTime(
+            getReservationEndTime(selectedDay, selectedMatchDuration)
           )}`}
           <br />
           {`Location: ${selectedLocation}`}

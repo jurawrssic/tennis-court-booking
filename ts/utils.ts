@@ -15,6 +15,9 @@ const getDayMonthAndYear = (date: Date) => {
   return { day, month, year };
 };
 
+const formatTime = (time: Date) =>
+  time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
 const getSameDayReservations = (
   bookedReservation: SINGLE_RESERVATION_OBJECT,
   selectedDay: Date
@@ -145,8 +148,13 @@ const getReservationEndTime = (
   newReservationEndTime: Date,
   newReservationDuration: string
 ) => {
-  return newReservationEndTime.setMinutes(
-    newReservationEndTime.getMinutes() + parseInt(newReservationDuration)
+  const newReservationEndTimeInstance = new Date(newReservationEndTime);
+
+  return new Date(
+    newReservationEndTimeInstance.setMinutes(
+      newReservationEndTimeInstance.getMinutes() +
+        parseInt(newReservationDuration)
+    )
   );
 };
 
@@ -198,9 +206,6 @@ const isTimeSlotAvailable = (
 
   return true;
 };
-
-const formatTime = (time: Date) =>
-  time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
 const setDatesToOpeningHours = (selectedDay: Date) => {
   const { openingTime, closingTime } = OPENING_HOURS;
@@ -259,4 +264,9 @@ const displaySelectedDay = (date: Date) => {
     });
 };
 
-export { getAvailableTimeSlots, displaySelectedDay };
+export {
+  formatTime,
+  getReservationEndTime,
+  getAvailableTimeSlots,
+  displaySelectedDay,
+};
