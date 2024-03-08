@@ -1,8 +1,20 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+First you'll need to make sure you have a more updated version of Node
 
-First, run the development server:
+``node -v``
+
+I recommend using v21 since it's the one I developed it and know that it doesn't have any issues with the application -- for context I'm running everything on Ubuntu.
+You can install this version of node using nvm:
+
+```bash
+nvm install v21
+
+nvm use v21
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -16,21 +28,22 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Checkout the live demo
+[Live demo](https://tennis-court-booking-two.vercel.app/) on Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Assumptions made during the development of the project:
 
-## Learn More
+- Disabled all past days on the calendar so the user can't book the court on a day that has already passed;
+- We also shouldn't display time slots outside of working court hours, assuming that opening is at 8am and closing is at 6pm, that can be changed since there's a constant for that;
+- Anticipate there will be many court locations and match durations. The app should be able to handle any number of court locations and match durations, as long as they adhere to the existing patterns;
+- Responsive design was implemented based on what was deemed most appropriate, as specific design for smaller screens was not provided.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  ### Features I thought about but didn't have the time to code
+  Since I didn't have much time, my primary focus was on delivering the main feature with clean, maintainable, and high-quality code. Here are a few features I considered but didn't have time to implement:
+  - Wanted to have more validation; the application flow is structured in a way so that the user can't make mistakes like trying to book without a location, etc., but additional validation would enhance the user experience and help prevent unexpected errors;
+  - Error handling; while the application seems robust with the preventive measures already in place, further error handling wouldn't hurt;
+  - Wanted to have tests in place with Jest and Cypress;
+  - Would definitely add internationalization to eliminate hardcoded text;
+  - If I were to start development anew, I would opt for a third-party library like date-fns to streamline date handling, given the challenges posed by the JavaScript date API;
+  - I would disable days that are fully booked and highlight days when the user has a booking, as implied by the screenshot provided for the design;
+  - Would send confirmation emails upon booking.
