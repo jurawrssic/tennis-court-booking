@@ -64,6 +64,46 @@ const initialState = {
         date: new Date('2024-03-08T13:30:00'),
         endTime: new Date('2024-03-08T14:00:00'),
       },
+      {
+        date: new Date('2024-03-08T14:00:00'),
+        endTime: new Date('2024-03-08T16:00:00'),
+      },
+      {
+        date: new Date('2024-03-09T10:30:00'),
+        endTime: new Date('2024-03-09T12:00:00'),
+      },
+      {
+        date: new Date('2024-03-09T13:30:00'),
+        endTime: new Date('2024-03-09T14:00:00'),
+      },
+      {
+        date: new Date('2024-03-09T14:00:00'),
+        endTime: new Date('2024-03-09T16:00:00'),
+      },
+      {
+        date: new Date('2024-03-15T10:30:00'),
+        endTime: new Date('2024-03-15T12:00:00'),
+      },
+      {
+        date: new Date('2024-03-15T13:30:00'),
+        endTime: new Date('2024-03-15T14:00:00'),
+      },
+      {
+        date: new Date('2024-03-15T14:00:00'),
+        endTime: new Date('2024-03-15T16:00:00'),
+      },
+      {
+        date: new Date('2024-03-24T10:30:00'),
+        endTime: new Date('2024-03-24T12:00:00'),
+      },
+      {
+        date: new Date('2024-03-24T13:30:00'),
+        endTime: new Date('2024-03-24T14:00:00'),
+      },
+      {
+        date: new Date('2024-03-24T14:00:00'),
+        endTime: new Date('2024-03-24T16:00:00'),
+      },
     ],
     lisbon: [
       {
@@ -74,15 +114,95 @@ const initialState = {
         date: new Date('2024-03-08T13:30:00'),
         endTime: new Date('2024-03-08T14:00:00'),
       },
+      {
+        date: new Date('2024-03-08T14:00:00'),
+        endTime: new Date('2024-03-08T16:00:00'),
+      },
+      {
+        date: new Date('2024-03-09T10:30:00'),
+        endTime: new Date('2024-03-09T12:00:00'),
+      },
+      {
+        date: new Date('2024-03-09T13:30:00'),
+        endTime: new Date('2024-03-09T14:00:00'),
+      },
+      {
+        date: new Date('2024-03-09T14:00:00'),
+        endTime: new Date('2024-03-09T16:00:00'),
+      },
+      {
+        date: new Date('2024-03-15T10:30:00'),
+        endTime: new Date('2024-03-15T12:00:00'),
+      },
+      {
+        date: new Date('2024-03-15T13:30:00'),
+        endTime: new Date('2024-03-15T14:00:00'),
+      },
+      {
+        date: new Date('2024-03-15T14:00:00'),
+        endTime: new Date('2024-03-15T16:00:00'),
+      },
+      {
+        date: new Date('2024-03-24T10:30:00'),
+        endTime: new Date('2024-03-24T12:00:00'),
+      },
+      {
+        date: new Date('2024-03-24T13:30:00'),
+        endTime: new Date('2024-03-24T14:00:00'),
+      },
+      {
+        date: new Date('2024-03-24T14:00:00'),
+        endTime: new Date('2024-03-24T16:00:00'),
+      },
     ],
     singapore: [
       {
-        date: new Date('2024-03-07T10:30:00'),
-        endTime: new Date('2024-03-07T12:00:00'),
+        date: new Date('2024-03-08T10:30:00'),
+        endTime: new Date('2024-03-08T12:00:00'),
       },
       {
-        date: new Date('2024-03-07T13:30:00'),
-        endTime: new Date('2024-03-07T14:00:00'),
+        date: new Date('2024-03-08T13:30:00'),
+        endTime: new Date('2024-03-08T14:00:00'),
+      },
+      {
+        date: new Date('2024-03-08T14:00:00'),
+        endTime: new Date('2024-03-08T16:00:00'),
+      },
+      {
+        date: new Date('2024-03-09T10:30:00'),
+        endTime: new Date('2024-03-09T12:00:00'),
+      },
+      {
+        date: new Date('2024-03-09T13:30:00'),
+        endTime: new Date('2024-03-09T14:00:00'),
+      },
+      {
+        date: new Date('2024-03-09T14:00:00'),
+        endTime: new Date('2024-03-09T16:00:00'),
+      },
+      {
+        date: new Date('2024-03-15T10:30:00'),
+        endTime: new Date('2024-03-15T12:00:00'),
+      },
+      {
+        date: new Date('2024-03-15T13:30:00'),
+        endTime: new Date('2024-03-15T14:00:00'),
+      },
+      {
+        date: new Date('2024-03-15T14:00:00'),
+        endTime: new Date('2024-03-15T16:00:00'),
+      },
+      {
+        date: new Date('2024-03-24T10:30:00'),
+        endTime: new Date('2024-03-24T12:00:00'),
+      },
+      {
+        date: new Date('2024-03-24T13:30:00'),
+        endTime: new Date('2024-03-24T14:00:00'),
+      },
+      {
+        date: new Date('2024-03-24T14:00:00'),
+        endTime: new Date('2024-03-24T16:00:00'),
       },
     ],
   },
