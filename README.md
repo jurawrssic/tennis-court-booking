@@ -53,9 +53,11 @@ Since I didn't have much time, my primary focus was on delivering the main featu
 ## Additional Information
 So we don't get confused when trying out the app, here are the currently booked dates and times, they're all the same across locations
 
+```
 March 08 from 10:30am to 12:00pm
 March 08 from 13:30pm to 14:00pm
 March 08 from 14:00pm to 16:00pm
+
 
 March 09 from 10:30am to 12:00pm
 March 09 from 13:30pm to 14:00pm
@@ -68,3 +70,5 @@ March 15 from 14:00pm to 16:00pm
 March 24 from 10:30am to 12:00pm
 March 24 from 13:30pm to 14:00pm
 March 24 from 14:00pm to 16:00pm
+```
+``
