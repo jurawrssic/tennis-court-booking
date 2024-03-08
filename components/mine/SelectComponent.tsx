@@ -1,6 +1,3 @@
-import { GlobalContext } from '@/context/GlobalState';
-import { useContext, useEffect } from 'react';
-
 import {
   Select,
   SelectContent,
@@ -10,7 +7,6 @@ import {
 } from '@/components/ui/select';
 
 import { SELECT_OPTIONS_ARRAY } from '@/ts/types';
-import { getAvailableTimeSlots } from '@/ts/utils';
 
 const SelectComponent = ({
   value,
@@ -23,32 +19,6 @@ const SelectComponent = ({
   placeholder: string;
   onChange: Function;
 }) => {
-  const {
-    selectedLocation,
-    selectedMatchDuration,
-    selectedDay,
-    filteredMatches,
-    setAvailableTimeSlots,
-    getBookedMatchesPerLocation,
-    toggleDayPicker,
-  } = useContext(GlobalContext);
-
-  useEffect(() => {
-    if (selectedLocation && selectedMatchDuration) {
-      toggleDayPicker(false);
-      getBookedMatchesPerLocation();
-    }
-
-    if (selectedLocation && selectedMatchDuration && selectedDay) {
-      getAvailableTimeSlots(
-        selectedDay,
-        selectedMatchDuration,
-        filteredMatches,
-        setAvailableTimeSlots
-      );
-    }
-  }, [selectedLocation, selectedMatchDuration, selectedDay]);
-
   return (
     <Select onValueChange={(value) => onChange(value)} value={value}>
       <SelectTrigger>

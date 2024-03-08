@@ -1,29 +1,10 @@
-import { GlobalContext } from '@/context/GlobalState';
-import { useContext, useEffect } from 'react';
-
+import { useGlobalContext } from '@/context/GlobalState';
 import { Calendar } from '@/components/ui/calendar';
-import { getAvailableTimeSlots } from '@/ts/utils';
 
 import '@/styles/daypicker.css';
 
 const DayPicker = () => {
-  const {
-    selectedMatchDuration,
-    selectedDay,
-    disableDayPicker,
-    filteredMatches,
-    setSelectedDay,
-    setAvailableTimeSlots,
-  } = useContext(GlobalContext);
-
-  useEffect(() => {
-    getAvailableTimeSlots(
-      selectedDay,
-      selectedMatchDuration,
-      filteredMatches,
-      setAvailableTimeSlots
-    );
-  }, [selectedDay]);
+  const { selectedDay, disableDayPicker, setSelectedDay } = useGlobalContext();
 
   return (
     <section className="daypicker-area">

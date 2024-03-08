@@ -1,6 +1,4 @@
-import { GlobalContext } from '@/context/GlobalState';
-import { useContext } from 'react';
-
+import { useGlobalContext } from '@/context/GlobalState';
 import { SelectComponent } from '@/components/mine/SelectComponent';
 
 const MatchDurationSelect = () => {
@@ -8,7 +6,7 @@ const MatchDurationSelect = () => {
     selectedMatchDuration,
     availableMatchDurations,
     setSelectedMatchDuration,
-  } = useContext(GlobalContext);
+  } = useGlobalContext();
 
   const placeholder = 'Select duration';
 

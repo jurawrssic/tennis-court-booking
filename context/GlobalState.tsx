@@ -4,6 +4,8 @@ import React, {
   useReducer,
   Dispatch,
   SetStateAction,
+  useContext,
+  useEffect,
 } from 'react';
 
 import AppReducer from './AppReducer';
@@ -19,6 +21,8 @@ import type {
   SINGLE_RESERVATION_OBJECT,
   RESERVATIONS_ARRAY,
 } from '../ts/types';
+
+import { getAvailableTimeSlots } from '@/ts/utils';
 
 type State = {
   selectedLocation: string;
@@ -121,10 +125,6 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     dispatch({ type: 'DISABLE_DAY_PICKER', payload: disableDayPicker });
   };
 
-  const toggleIsLoading = () => {
-    dispatch({ type: 'TOGGLE_IS_LOADING', payload: null });
-  };
-
   const getBookedMatchesPerLocation = () => {
     if (state.selectedLocation) {
       dispatch({
@@ -143,6 +143,51 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const shouldEnableDayPickerAndFilterMatchesPerSelectedLocation = () =>
+    state.selectedLocation && state.selectedMatchDuration;
+
+  const shouldGetAvailableTimeSlots = () =>
+    state.selectedLocation && state.selectedMatchDuration && state.selectedDay;
+
+  useEffect(() => {
+    const availableTimeSlots = getAvailableTimeSlots(
+      state.selectedDay,
+      state.selectedMatchDuration,
+      state.filteredMatches
+    );
+
+    setAvailableTimeSlots(availableTimeSlots);
+  }, [state.previouslyBookedMatches[state.selectedLocation]]);
+
+  useEffect(() => {
+    const availableTimeSlots = getAvailableTimeSlots(
+      state.selectedDay,
+      state.selectedMatchDuration,
+      state.filteredMatches
+    );
+
+    setAvailableTimeSlots(availableTimeSlots);
+  }, [state.selectedDay]);
+
+  useEffect(() => {
+    if (shouldEnableDayPickerAndFilterMatchesPerSelectedLocation()) {
+      toggleDayPicker(false);
+      getBookedMatchesPerLocation();
+    }
+  }, [state.selectedLocation, state.selectedMatchDuration]);
+
+  useEffect(() => {
+    if (shouldGetAvailableTimeSlots()) {
+      const availableTimeSlots = getAvailableTimeSlots(
+        state.selectedDay,
+        state.selectedMatchDuration,
+        state.filteredMatches
+      );
+
+      setAvailableTimeSlots(availableTimeSlots);
+    }
+  }, [state.selectedLocation, state.selectedMatchDuration, state.selectedDay]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -160,3 +205,5 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     </GlobalContext.Provider>
   );
 };
+
+export const useGlobalContext = (): ContextType => useContext(GlobalContext);

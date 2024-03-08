@@ -18,6 +18,15 @@ const getDayMonthAndYear = (date: Date) => {
 const formatTime = (time: Date) =>
   time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+const isSameDay = (firstDay: number, secondDay: number) =>
+  firstDay === secondDay;
+
+const isSameMonth = (firstMonth: number, secondMonth: number) =>
+  firstMonth === secondMonth;
+
+const isSameYear = (firstYear: number, secondYear: number) =>
+  firstYear === secondYear;
+
 const getSameDayReservations = (
   bookedReservation: SINGLE_RESERVATION_OBJECT,
   selectedDay: Date
@@ -26,9 +35,9 @@ const getSameDayReservations = (
   const currentlySelectedDate = getDayMonthAndYear(selectedDay);
 
   return (
-    currentlySelectedDate.day === reservationDate.day &&
-    currentlySelectedDate.month === reservationDate.month &&
-    currentlySelectedDate.year === reservationDate.year
+    isSameDay(currentlySelectedDate.day, reservationDate.day) &&
+    isSameMonth(currentlySelectedDate.month, reservationDate.month) &&
+    isSameYear(currentlySelectedDate.year, reservationDate.year)
   );
 };
 
@@ -45,21 +54,23 @@ const filterReservationsByDate = (
   return filteredReservations;
 };
 
+const isAfterOpening = (newReservationStartTime: Date) =>
+  newReservationStartTime.getHours() >= OPENING_HOURS.openingTime.hour;
+
+const endsBeforeClosing = (newReservationEndTime: Date) =>
+  newReservationEndTime.getHours() < OPENING_HOURS.closingTime.hour;
+
+const endsAtClosingTime = (newReservationEndTime: Date) =>
+  newReservationEndTime.getHours() === OPENING_HOURS.closingTime.hour &&
+  newReservationEndTime.getMinutes() === OPENING_HOURS.closingTime.minutes;
+
 const isDuringOpeningHours = (
   newReservationStartTime: Date,
   newReservationEndTime: Date
-) => {
-  const { openingTime, closingTime } = OPENING_HOURS;
-
-  const isAfterOpening = newReservationStartTime.getHours() >= openingTime.hour;
-  const endsBeforeClosing = newReservationEndTime.getHours() < closingTime.hour;
-
-  const endsAtClosingTime =
-    newReservationEndTime.getHours() === closingTime.hour &&
-    newReservationEndTime.getMinutes() === closingTime.minutes;
-
-  return isAfterOpening && (endsBeforeClosing || endsAtClosingTime);
-};
+) =>
+  isAfterOpening(newReservationStartTime) &&
+  (endsBeforeClosing(newReservationEndTime) ||
+    endsAtClosingTime(newReservationEndTime));
 
 const partiallyOverlapsAnotherMatch = (
   newReservationStartTime: Date,
@@ -223,8 +234,7 @@ const setDatesToOpeningHours = (selectedDay: Date) => {
 const getAvailableTimeSlots = (
   selectedDay: Date,
   selectedMatchDuration: string,
-  previouslyBookedMatches: RESERVATIONS_ARRAY,
-  setAvailableTimeSlots: Function
+  previouslyBookedMatches: RESERVATIONS_ARRAY
 ) => {
   const { currentIterationTime, closingTimeDate } =
     setDatesToOpeningHours(selectedDay);
@@ -252,17 +262,15 @@ const getAvailableTimeSlots = (
     currentIterationTime.setMinutes(currentIterationTime.getMinutes() + 30);
   }
 
-  setAvailableTimeSlots(availableTimeSlots);
+  return availableTimeSlots;
 };
 
-const displaySelectedDay = (date: Date) => {
-  if (date)
-    return date.toLocaleString('en', {
-      weekday: 'long',
-      month: 'long',
-      day: '2-digit',
-    });
-};
+const displaySelectedDay = (date?: Date) =>
+  date?.toLocaleString('en', {
+    weekday: 'long',
+    month: 'long',
+    day: '2-digit',
+  });
 
 export {
   formatTime,

@@ -1,11 +1,9 @@
-import { GlobalContext } from '@/context/GlobalState';
-import { useContext } from 'react';
-
+import { useGlobalContext } from '@/context/GlobalState';
 import { SelectComponent } from '@/components/mine/SelectComponent';
 
 const LocationSelect = () => {
   const { selectedLocation, availableLocations, setSelectedLocation } =
-    useContext(GlobalContext);
+    useGlobalContext();
 
   const placeholder = 'Pick a location';
 

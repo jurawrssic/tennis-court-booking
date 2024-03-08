@@ -1,5 +1,5 @@
-import { GlobalContext } from '@/context/GlobalState';
-import { useContext, useState } from 'react';
+import { useGlobalContext } from '@/context/GlobalState';
+import { useState } from 'react';
 
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import { ConfirmationDialog } from './ConfirmationDialog';
@@ -10,7 +10,7 @@ const AvailableTimeSlots = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [confirmedReservation, setConfirmedReservation] = useState(false);
   const { selectedDay, availableTimeSlots, setSelectedDay } =
-    useContext(GlobalContext);
+    useGlobalContext();
 
   const setMatchStartTime = (hour: number, minutes: number) => {
     const newDateInstance = new Date(selectedDay);
@@ -24,10 +24,7 @@ const AvailableTimeSlots = () => {
 
   const handleDialog = (value: boolean) => {
     if (confirmedReservation) {
-      setOpenDialog(value);
       setConfirmedReservation(false);
-
-      return;
     }
 
     setOpenDialog(value);

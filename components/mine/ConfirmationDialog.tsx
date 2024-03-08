@@ -1,5 +1,4 @@
-import { GlobalContext } from '@/context/GlobalState';
-import { useContext, useEffect } from 'react';
+import { useGlobalContext } from '@/context/GlobalState';
 
 import {
   DialogContent,
@@ -15,7 +14,6 @@ import {
   formatTime,
   getReservationEndTime,
   displaySelectedDay,
-  getAvailableTimeSlots,
 } from '@/ts/utils';
 
 const ConfirmationDialog = ({
@@ -29,12 +27,9 @@ const ConfirmationDialog = ({
     selectedLocation,
     selectedMatchDuration,
     selectedDay,
-    filteredMatches,
-    previouslyBookedMatches,
     addNewReservation,
-    setAvailableTimeSlots,
     getBookedMatchesPerLocation,
-  } = useContext(GlobalContext);
+  } = useGlobalContext();
 
   const getNewReservationObject = () => {
     return {
@@ -51,16 +46,6 @@ const ConfirmationDialog = ({
     getBookedMatchesPerLocation();
     setConfirmedReservation(true);
   };
-
-  useEffect(() => {
-    if (confirmedReservation)
-      getAvailableTimeSlots(
-        selectedDay,
-        selectedMatchDuration,
-        filteredMatches,
-        setAvailableTimeSlots
-      );
-  }, [previouslyBookedMatches[selectedLocation]]);
 
   const confirmReservationDialog = () => {
     return (
